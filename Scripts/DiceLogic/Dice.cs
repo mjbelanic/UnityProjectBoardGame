@@ -24,6 +24,7 @@ public class Dice : MonoBehaviour
     void Update()
     {
         diceVelocity = rb.velocity;
+        // If its player's turn and the roll phase and they have clicked space and have not rolled yet, roll dice
         if (GameManager.Instance.CurrentPlayerId == 0)
         {
             if (Input.GetKeyDown(KeyCode.Space) && 
@@ -39,6 +40,7 @@ public class Dice : MonoBehaviour
         }
         else
         {
+            // if its computer's turn and the roll phase and they have not yet rolled, roll dice
             if (GameManager.Instance.state == GameStates.RollPhase 
                 && currentState == DiceState.NotRolled)
             {

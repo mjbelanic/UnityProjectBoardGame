@@ -17,6 +17,7 @@ public class DiceChecker : MonoBehaviour
         }
     }
 
+    // Get the current velocity of each dice
     void FixedUpdate()
     {
         for (int i = 0; i < dice.Length; i++)
@@ -25,6 +26,7 @@ public class DiceChecker : MonoBehaviour
         }
     }
 
+    // Once Dice has stopped, check which side is face up using the opposite side of the collision
     private void OnTriggerStay(Collider other)
     {
         for (int i = 0; i < dice.Length; i++)

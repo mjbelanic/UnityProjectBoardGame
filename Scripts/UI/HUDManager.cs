@@ -50,6 +50,7 @@ public class HUDManager : MonoBehaviour
 
     private void DisplayCorrectUIForCurrentPlayer(string player)
     {
+        // Don't show button if computer's turn
         if (player != "Computer")
         {
             turnText.gameObject.SetActive(true);
@@ -70,7 +71,7 @@ public class HUDManager : MonoBehaviour
 
     public void BringOutDiceAndBox()
     {
-        //zoom out camera to max;
+        //zoom out camera to max and focus on board center;
         cam.GetComponent<CameraManager>().FocusCameraToCenter();
         cam.GetComponent<CameraManager>().lockMovement = true;
         turnText.gameObject.SetActive(false);

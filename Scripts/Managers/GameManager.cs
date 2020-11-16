@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
 
-
+    // Singleton logic
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -42,10 +42,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Don't allow computer to begin turn until dice from player's turn are removed
         if (DiceBoardBeingRemoved)
         {
             return;
         }
+        // Determine which player is going
         if (CurrentPlayerId == 0)
         {
             if (state == GameStates.Start)
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     }
 
     // TODO: Make an else if to check that turnNumber == 0 so we can move
+    // TODO: Insert game logic for movement game state
     public void StartTurn(string player)
     {
         if (enemy.GetInitialRollValue() == 0 || playerOne.GetInitialRollValue() == 0)
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Send Player information to HUD for display
     internal IEnumerator SetTextAndDestroyPieces()
     {
         DiceBoardBeingRemoved = true;
@@ -111,6 +115,9 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(waitTime);
         hudManager.diceAndBox.DestroyDicesAndBox();
+
+        // If still deciding who goes first, jump to end turn state
+        // Else allow player to move
         if (turnNumber == 0)
         {
             state = GameStates.EndingTurn;

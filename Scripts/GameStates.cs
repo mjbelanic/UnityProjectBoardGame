@@ -1,4 +1,5 @@
-﻿public enum GameStates
+﻿// All possible game states
+public enum GameStates
 {
     Start,
     RollPhase,
